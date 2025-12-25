@@ -26,7 +26,7 @@ cursor.execute("""
 conn.commit()
 
 
-API_TOKEN = '7912798466:AAHMMt2pPa5lbiFqsw8cO_2Lg6tu3FhiVks'
+API_TOKEN = '7912798466:AAGNbSFPS5N39tcJs3HSytXXTBvlKe8cvMc'
 
 
 logging.basicConfig(level=logging.INFO)
