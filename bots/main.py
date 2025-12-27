@@ -17,7 +17,7 @@ cursor = conn.cursor()
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS users (
         user_id INTEGER PRIMARY KEY,
-        ZBX_coins INT DEFAULT 500,
+        ZBX_coins INT DEFAULT 15000,
         kd_work TEXT DEFAULT '0',
         coins_win INT DEFAULT 0,
         coins_loss INT DEFAULT 0
