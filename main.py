@@ -34,7 +34,7 @@ cursor.execute("""
 conn.commit()
 
 
-API_TOKEN = '7912798466:AAGYMfVx-SFjKL9SMA1HxzJXPfvpu_2PwQY'
+API_TOKEN = '7912798466:AAHZ6jYxLW0_ju1s3KxGmraR-9wG5NpxA3k'
 
 
 logging.basicConfig(level=logging.INFO)
@@ -918,4 +918,5 @@ async def handle_all_text(message: types.Message):
         
 
 if __name__ == '__main__':
+
     executor.start_polling(dp, skip_updates=True, on_startup=on_startup)
