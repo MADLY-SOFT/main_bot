@@ -257,8 +257,8 @@ async def roll_slot(message: types.Message):
         await message.answer("<b>⚠️ Используйте формат:</b>\n\n/slot «ставка» (от 50 до 1000)", parse_mode='html')
         return
 
-    if bet < 50 or bet > 1000:
-        await message.answer("⚠️ Ставка должна быть от 🪙 50 до 🪙 1000 ZBX")
+    if bet < 50 or bet > 100000:
+        await message.answer("⚠️ Ставка должна быть от 🪙 50 до 🪙 100000 ZBX")
         return
 
     user_id = message.from_user.id
@@ -323,8 +323,8 @@ async def roll_dice(message: types.Message):
         await message.answer("⚠️ Число, на которое ставите, должно быть от 1 до 6")
         return
 
-    if bet < 25 or bet > 1000:
-        await message.answer("⚠️ Ставка должна быть от 25 🪙 до 1000 🪙 ZBX")
+    if bet < 25 or bet > 100000:
+        await message.answer("⚠️ Ставка должна быть от 25 🪙 до 100000 🪙 ZBX")
         return
 
     user_id = message.from_user.id
@@ -369,8 +369,8 @@ async def roll_basketball(message: types.Message):
     stake = int(args[0])
 
     # Проверяем, что ставка в пределах допустимого диапазона
-    if stake < 50 or stake > 1000:
-        await message.answer("⚠️ Ставка должна быть от 50 до 1000.")
+    if stake < 50 or stake > 100000:
+        await message.answer("⚠️ Ставка должна быть от 50 до 100000.")
         return
 
     user_id = message.from_user.id
@@ -438,8 +438,8 @@ async def roll_dice(message: types.Message):
     stake = int(args[0])
 
     # Проверяем, что ставка в пределах допустимого диапазона
-    if stake < 50 or stake > 1000:
-        await message.answer("⚠️ Ставка должна быть от 50 до 1000.")
+    if stake < 50 or stake > 100000:
+        await message.answer("⚠️ Ставка должна быть от 50 до 100000.")
         return
 
     user_id = message.from_user.id
@@ -511,7 +511,7 @@ async def work_command(message: types.Message):
     if result is None:
         cursor.execute('INSERT INTO users (user_id) VALUES (?)', (user_id,))
         conn.commit()
-        ZBX_coins = random.randint(25, 50)
+        ZBX_coins = random.randint(5000, 10000)
         cursor.execute('UPDATE users SET ZBX_coins = ?, kd_work = ? WHERE user_id = ?', (ZBX_coins, current_time, user_id))
         conn.commit()
         await message.answer(f"💰 Вы получили {ZBX_coins} коинов!")
@@ -523,13 +523,13 @@ async def work_command(message: types.Message):
     last_work_time = int(last_work_time)
 
     # Проверяем, прошло ли 8 часов с последней работы
-    if current_time < last_work_time + 8 * 3600:
-        remaining_time = (last_work_time + 8 * 3600 - current_time)
+    if current_time < last_work_time + 8 * 1800:
+        remaining_time = (last_work_time + 8 * 1800 - current_time)
         await message.answer(f"⏳ Вы можете работать снова через {remaining_time // 3600}ч. {(remaining_time % 3600) // 60}м.")
         return
 
     # Выдаем случайное количество коинов
-    coins = random.randint(500, 2500)
+    coins = random.randint(5000, 10000)
     ZBX_coins += coins
     cursor.execute('UPDATE users SET ZBX_coins = ?, kd_work = ? WHERE user_id = ?', (ZBX_coins, current_time, user_id))
     conn.commit()
