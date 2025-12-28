@@ -34,7 +34,7 @@ cursor.execute("""
 conn.commit()
 
 
-API_TOKEN = '7912798466:AAHZ6jYxLW0_ju1s3KxGmraR-9wG5NpxA3k'
+API_TOKEN = 'token'
 
 
 logging.basicConfig(level=logging.INFO)
@@ -50,7 +50,7 @@ async def reset_statistics():
     cursor.execute('UPDATE users SET sms_day = 0')
     
     # Сброс недели (если сегодня понедельник)
-    if datetime.now().weekday() == 6:
+    if datetime.now().weekday() == 0:
         cursor.execute('UPDATE users SET sms_week = 0')
         print("Недельная статистика обнулена")
         
@@ -61,7 +61,7 @@ async def reset_statistics():
 async def on_startup(_):
     moscow_tz = pytz.timezone('Europe/Moscow')
     scheduler = AsyncIOScheduler(timezone=moscow_tz)
-    scheduler.add_job(reset_statistics, 'cron', hour=2, minute=38)
+    scheduler.add_job(reset_statistics, 'cron', hour=3, minute=06)
     scheduler.start()
     print("Планировщик задач запущен")
 
@@ -920,3 +920,4 @@ async def handle_all_text(message: types.Message):
 if __name__ == '__main__':
 
     executor.start_polling(dp, skip_updates=True, on_startup=on_startup)
+
