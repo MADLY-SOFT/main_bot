@@ -61,7 +61,7 @@ async def reset_statistics():
 async def on_startup(_):
     moscow_tz = pytz.timezone('Europe/Moscow')
     scheduler = AsyncIOScheduler(timezone=moscow_tz)
-    scheduler.add_job(reset_statistics, 'cron', hour=3, minute=06)
+    scheduler.add_job(reset_statistics, 'cron', hour=3, minute=10)
     scheduler.start()
     print("Планировщик задач запущен")
 
@@ -920,5 +920,6 @@ async def handle_all_text(message: types.Message):
 if __name__ == '__main__':
 
     executor.start_polling(dp, skip_updates=True, on_startup=on_startup)
+
 
 
